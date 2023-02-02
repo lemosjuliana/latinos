@@ -7,7 +7,8 @@ export function qs(selector, parent = document) {
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key)) || [];
+  return JSON.parse(localStorage.getItem(key)); 
+  // || [];
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
@@ -41,3 +42,28 @@ export function renderListWithTemplate(
     }
     parentElement.insertAdjacentHTML(position, htmlconvert.join(""));
   }
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", template);
+  if(callback) {
+      callback(data);
+  }
+}
+
+async function loadTemplate(path) {
+  const response = await fetch(path);
+  const template = await response.text();
+
+  return template;
+} 
+
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate("./partials/header.html");
+  const footerTemplate = await loadTemplate("./partials/footer.html");
+
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+}
