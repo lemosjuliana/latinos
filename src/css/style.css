@@ -109,7 +109,9 @@ button {
 .cart:hover svg {
   fill: gray;
 }
-
+.cart_total {
+  display: none;
+}
 /* End cart icon styles */
 
 .mission {

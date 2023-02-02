@@ -25,4 +25,21 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+function calculateInCart(){
+  const cartItems = getLocalStorage("so-cart");
+  total = 0;
+  if (cartItems) {
+    total = total + cartItems.FinalPrice;
+
+  }
+  return total;
+}
+function displayTotal(){
+  const showTotal = `<p class="cart-total">$${total}</p>`
+
+  return showTotal;
+}
+
 renderCartContents();
+let total = calculateInCart();
+displayTotal();
