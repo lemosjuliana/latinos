@@ -94,6 +94,9 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
+.product-title{
+  text-transform: capitalize; 
+} 
 /* End utility classes */
 
 /* Cart icon styles */
@@ -126,16 +129,19 @@ button {
 .products {
   padding: 0.5em;
 }
+
 .product-list {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   list-style-type: none;
   padding: 0;
+  
 }
 .product-list a {
   text-decoration: none;
   color: var(--dark-grey);
+  
 }
 /* Styles for product lists */
 .product-card {
@@ -144,6 +150,7 @@ button {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+  text-align: center;
 }
 .product-card h2,
 .product-card h3,
@@ -168,6 +175,39 @@ button {
 
 .product-detail img {
   width: 100%;
+}
+/* product grid styles */
+.product-grid {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  color: var(--dark-grey);
+  padding-left: 0;
+  
+}
+.product-grid > li {
+  width: 150px;
+  padding: 0.5em;
+  margin: 1em;
+}
+.product-grid h2 {
+  margin:0;
+  font-size: 1.2em;
+}
+
+.product-grid a { 
+  color: #303030;
+  text-decoration: none;
+
+}
+.product-grid a:link
+.product-grid a:visited {
+  color: var(--dark-grey);
+}
+.product-grid a:hover {
+  text-decoration: underline;
 }
 
 /* Start cart list card styles */
