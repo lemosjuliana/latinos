@@ -1,6 +1,6 @@
 import {renderListWithTemplate} from "./utils.mjs";
 
-// ProductList.mjs
+// ProductList.mjs + Discount indicator-product listing
 function productCardTemplate(product) {
   return `<li class="product-card">
   <a href="product_pages/index.html?product=${product.Id}">
@@ -10,6 +10,8 @@ function productCardTemplate(product) {
   />
   <h3 class="card__brand">${product.Brand.Name}</h3>
   <h2 class="card__name">${product.Name}</h2>
+  <p class="product-card__price"><s>$${product.SuggestedRetailPrice}</s></p>
+  <p class="product-card__price">${Math.round(100 - product.FinalPrice / product.SuggestedRetailPrice * 100)}% OFF</p>
   <p class="product-card__price">$${product.FinalPrice}</p></a>
 </li>`
 } 
