@@ -15,7 +15,7 @@ function shoppingCartTemplate(item) {
   const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
       <img
-        src="${item.Image}"
+        src="${item.Images.PrimaryMedium}"
         alt="${item.Name}"
       />
     </a>
@@ -28,67 +28,9 @@ function shoppingCartTemplate(item) {
     <span class="remove-item" data-id="${item.Id}">X</span>
   </li>`;
 
-//<<<<<<< jt-cart-branch
-//  return newItem;
-//=======
-//    return newItem;
-//  }
+  return newItem;
+  }
 
-//export default class ShoppingCart {
-//  constructor(shoppingCartItems, shoppingHtmlItems) {
-//    this.shoppingCartItems = shoppingCartItems;
-//    this.shoppingHtmlItems = shoppingHtmlItems;
-    
-//  }
-//    renderCartContents() {
-//    const cartItems = getLocalStorage(this.shoppingCartItems);
-//    if (cartItems != null) {
-//      const htmlItems = cartItems.map((item) => shoppingCartTemplate(item));
-//      document.querySelector(this.shoppingHtmlItems).innerHTML = htmlItems.join("");
-//    } 
-//    else {
-//      let div = document.createElement("div");
-//      let p = document.createElement("p");
-//      p.innerText = "Your cart is empty."
-//      div.appendChild(p);
-//      document.querySelector(".products").insertBefore(div, document.querySelector(this.shoppingHtmlItems));
-//  
-//    }
-//  }
-//>>>>>>> main
-//}
-
-// export default class ShoppingCart {
-//   constructor(shoppingCartItems, shoppingHtmlItems) {
-//     this.shoppingCartItems = shoppingCartItems;
-//     this.shoppingHtmlItems = shoppingHtmlItems;
-//   }
-//   renderCartContents() {
-//     const cartItems = getLocalStorage(this.shoppingCartItems);
-//     if (cartItems) {
-//       const htmlItems = cartItems.map((item) => shoppingCartTemplate(item));
-//       document.querySelector(this.shoppingHtmlItems).innerHTML =
-//         htmlItems.join("");
-//     }
-//   }
-// }
-
-// function calculateInCart() {
-//   const cartItems = getLocalStorage("so-cart");
-//   let total = 0;
-//   if (cartItems) {
-//     total = total + cartItems.FinalPrice;
-//   }
-//   return total;
-// }
-// function displayTotal() {
-//   const showTotal = `<p class="cart-total">$${total}</p>`;
-
-//   return showTotal;
-// }
-
-// let total = calculateInCart();
-// displayTotal();
 export default class ShoppingCart {
   constructor(key, parentSelector) {
     this.key = key;
@@ -104,10 +46,35 @@ export default class ShoppingCart {
     const amounts = list.map((item) => item.FinalPrice);
     this.total = amounts.reduce((sum, item) => sum + item);
   }
-  renderCartContents() {
+    renderCartContents() {
     const cartItems = getLocalStorage(this.key);
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-    document.querySelector(".list-total").innerText += ` $${this.total}`;
+    if (cartItems != null) {
+      const htmlItems = cartItems.map((item) => shoppingCartTemplate(item));
+      document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+    } 
+    else {
+      let div = document.createElement("div");
+      let p = document.createElement("p");
+      p.innerText = "Your cart is empty."
+      div.appendChild(p);
+      document.querySelector(".products").insertBefore(div, document.querySelector(this.parentSelector));
+  
+    }
   }
 }
+
+ function calculateInCart() {
+   const cartItems = getLocalStorage("so-cart");
+   let total = 0;
+   if (cartItems) {
+     total = total + cartItems.FinalPrice;
+   }
+   return total;
+ }
+ function displayTotal() {
+   const showTotal = `<p class="cart-total">$${total}</p>`
+   return showTotal;
+ 
+ let total = calculateInCart();
+ displayTotal();
+ }
