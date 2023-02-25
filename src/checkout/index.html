@@ -17,20 +17,24 @@
         <form name="checkout">
           <fieldset>
             <legend>Shipping</legend>
-            <label for="fname">First Name</label>
-            <input type="fname" required>
-            <label for="lname">Last Name</label>
-            <input type="lname" required>
-            <label for="street">Street</label>
-            <input type="street" required>
-            <label for="city">City</label>
-            <input type="text" required>
-            <label for="state">State</label>
-            <input type="state" required>
-            <label for="zip">Zip</label>
-            <input type="zip" required>
+            <div class="checkout__name">
+              <label for="fname">First Name</label>
+              <input type="fname" required>
+              <label for="lname">Last Name</label>
+              <input type="lname" required>
+              </div>
+            <div class="checkout__address">
+              <label for="street">Street</label>
+              <input type="street" required>
+              <label for="city">City</label>
+              <input type="text" required>
+              <label for="state">State</label>
+              <input type="state" required>
+              <label for="zip">Zip</label>
+              <input type="zip" required>
+            </div>
           </fieldset>
-          <fieldset>
+          <fieldset class="checkout-summary">
             <legend>Payment</legend>
             <label for="card-number">Card Number</label>
             <input type="card-number" required>

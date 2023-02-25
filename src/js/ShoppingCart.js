@@ -1,13 +1,14 @@
 import { getLocalStorage } from "./utils.mjs";
+import calculateOrderTotal from "./CheckoutProcess.mjs";
 
 const productList = document.querySelector(".product-list")
 productList.addEventListener("click", (event => {
   if (event.target.matches(".remove-item")) {
-    const itemId = event.target.dataset.id;
+    const itemId = event.target.dataset.Id;
     const cartItems = getLocalStorage("so-cart");
     const updateCart = cartItems.filter((item) => item.Id !== itemId);
     localStorage.setItem("so-cart", JSON.stringify(updateCart));
-    renderCartContents();
+    this.renderCartContents();
   }
 }));
 
@@ -46,12 +47,13 @@ export default class ShoppingCart {
     const amounts = list.map((item) => item.FinalPrice);
     this.total = amounts.reduce((sum, item) => sum + item);
   }
-    renderCartContents() {
+  renderCartContents() {
     const cartItems = getLocalStorage(this.key);
+    const htmlItems = cartItems.map((item) => shoppingCartTemplate(item));
     if (cartItems != null) {
-      const htmlItems = cartItems.map((item) => shoppingCartTemplate(item));
+      
       document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-      document.querySelector(".list-total").innerText += ` $${this.total}`;
+      document.querySelector(".cart-total").innerText += ` $${this.total}`;
     } 
     else {
       let div = document.createElement("div");
@@ -62,20 +64,17 @@ export default class ShoppingCart {
   
     }
   }
+
 }
 
  function calculateInCart() {
    const cartItems = getLocalStorage("so-cart");
    total = 0;
-   if (cartItems) {
-     total = total + cartItems.FinalPrice;
+   if (cartItems != 0) {
+     total = calculateOrderTotal();
    }
    return total;
  }
- function displayTotal() {
-   const showTotal = `<p class="cart-total">$${total}</p>`
-   return showTotal;
- }
+
 
  let total = calculateInCart();
- displayTotal();
