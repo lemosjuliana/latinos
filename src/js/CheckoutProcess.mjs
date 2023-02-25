@@ -1,4 +1,8 @@
-import { getLocalStorage, setLocalStorage, alertMessage, removeAllAlerts } from "./utils.mjs";
+import { getLocalStorage, 
+  setLocalStorage, 
+  alertMessage, 
+  removeAllAlerts 
+} from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -65,7 +69,7 @@ export default class CheckoutProcess {
   }
   displayOrderTotals() {
     const shipping = document.querySelector(this.outputSelector + " #estimate");
-    const tax = document.querySelector(this.outputSelector + " #tax");
+    const tax = document.querySelector(this.outputSelector + " #tax-total");
     const orderTotal = document.querySelector(
       this.outputSelector + " #order-total"
     );
