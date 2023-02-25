@@ -66,7 +66,7 @@ export default class ShoppingCart {
 
  function calculateInCart() {
    const cartItems = getLocalStorage("so-cart");
-   let total = 0;
+   total = 0;
    if (cartItems) {
      total = total + cartItems.FinalPrice;
    }
