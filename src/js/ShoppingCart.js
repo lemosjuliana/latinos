@@ -51,6 +51,7 @@ export default class ShoppingCart {
     if (cartItems != null) {
       const htmlItems = cartItems.map((item) => shoppingCartTemplate(item));
       document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+      document.querySelector(".list-total").innerText += ` $${this.total}`;
     } 
     else {
       let div = document.createElement("div");
@@ -74,7 +75,7 @@ export default class ShoppingCart {
  function displayTotal() {
    const showTotal = `<p class="cart-total">$${total}</p>`
    return showTotal;
- 
+ }
+
  let total = calculateInCart();
  displayTotal();
- }
