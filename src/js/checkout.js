@@ -6,9 +6,13 @@ loadHeaderFooter();
 const myCheckout = new CheckoutProcess("so-cart", ".checkout-summary");
 myCheckout.init();
 
-document
-  .querySelector("#zip")
-  .addEventListener("blur", myCheckout.calculateOrdertotal.bind(myCheckout));
+const element = document.querySelector("#zip");
+if(element){
+  element.addEventListener("blur", myCheckout.calculateOrdertotal.bind(myCheckout));
+}
+// document
+//   .querySelector()
+//   .addEventListener("blur", myCheckout.calculateOrdertotal.bind(myCheckout));
 // listening for click on the button
 document.querySelector("#checkoutSubmit")
   .addEventListener("click", (e) => {

@@ -18,20 +18,25 @@ function formDataToJSON(formElement) {
 }
 
 function packageItems(items) {
-  const simplifiedItems = items.map((item) => {
-    console.log(item);
-    return {
-      id: item.Id,
-      price: item.FinalPrice,
-      name: item.Name,
-      quantity: 1,
-    };
-  });
-  return simplifiedItems;
+  // const simplifiedItems = null;
+
+  if (items){
+    return items.map((item) => {
+      console.log(item);
+      return {
+        id: item.Id,
+        price: item.FinalPrice,
+        name: item.Name,
+        quantity: 1,
+      };
+    });
+  }
+  // return simplifiedItems;
 }
 
 export default class CheckoutProcess {
   constructor(key, outputSelector) {
+    
     this.key = key;
     this.outputSelector = outputSelector;
     this.list = [];
@@ -51,11 +56,16 @@ export default class CheckoutProcess {
     const itemNumElement = document.querySelector(
       this.outputSelector + " #number-items"
     );
-    itemNumElement.innerText = this.list.length;
-    // calculate the total of all the items in the cart
+    if (this.list != null && this.list.length > 0){
+      itemNumElement.innerText = this.list.length;
+      // calculate the total of all the items in the cart
     const amounts = this.list.map((item) => item.FinalPrice);
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
     summaryElement.innerText = "$" + this.itemTotal;
+
+    }
+    
+    
   }
   calculateOrdertotal() {
     this.shipping = 10 + (this.list.length - 1) * 2;
