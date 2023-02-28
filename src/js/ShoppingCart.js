@@ -69,12 +69,13 @@ export default class ShoppingCart {
 
  function calculateInCart() {
    const cartItems = getLocalStorage("so-cart");
-   total = 0;
-   if (cartItems != 0) {
-     total = calculateOrderTotal();
+   let myTotal = 0;
+   if (cartItems > 0) {
+    //create an object to use calculateOrderTotal object.calculateOrderTotal
+     myTotal = cartItems.calculateOrderTotal();
    }
-   return total;
+   return myTotal;
  }
 
 
- let total = calculateInCart();
+  let total = calculateInCart();
