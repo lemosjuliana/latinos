@@ -34,3 +34,4 @@ export default class ProductListing {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 }
+
