@@ -1,4 +1,6 @@
-const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+//const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+//const baseURL = "https://wdd330-backend.vercel.app/";
+const baseURL = "http://localhost:3000/";
 
 async function convertToJson(res) {
   const data = await res.json();
@@ -33,6 +35,30 @@ export default class ExternalServices {
       },
       body: JSON.stringify(payload),
     };
-    return await fetch(baseURL + "/checkout/", options).then(convertToJson);
+    const response = await fetch(baseURL + "checkout/", options).then(convertToJson);
+    return response;
+  }
+  async longinRequest(creds){
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(creds),
+    };
+    const response = await fetch(baseURL + "login", options).then(convertToJson);
+    return response.accessToken;
+
+  }
+  async getOrders(token){
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await fetch(baseURL + "orders", options).then(convertToJson);
+    return response;
+
   }
 }
