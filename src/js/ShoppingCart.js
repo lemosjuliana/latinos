@@ -43,15 +43,26 @@ export default class ShoppingCart {
     this.calculateListTotal(list);
     this.renderCartContents(list);
   }
+  getQuantity(){
+    let quantity = 0;
+    for(let i = 0; i < this.list.length; i += 1){
+      quantity += this.list[i].quantity;
+    }
+    return quantity;
+  }
   calculateListTotal(list) {
+    if(!list){
+      return null;
+    }
     const amounts = list.map((item) => item.FinalPrice);
     this.total = amounts.reduce((sum, item) => sum + item);
   }
   renderCartContents() {
+
     const cartItems = getLocalStorage(this.key);
-    const htmlItems = cartItems.map((item) => shoppingCartTemplate(item));
+    
     if (cartItems != null) {
-      
+      const htmlItems = cartItems.map((item) => shoppingCartTemplate(item));
       document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
       document.querySelector(".cart-total").innerText += ` $${this.total}`;
     } 

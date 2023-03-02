@@ -56,7 +56,8 @@ export default class CheckoutProcess {
     const itemNumElement = document.querySelector(
       this.outputSelector + " #number-items"
     );
-    if (this.list != null && this.list.length > 0){
+
+    if (itemNumElement > 0){
       itemNumElement.innerText = this.list.length;
       // calculate the total of all the items in the cart
     const amounts = this.list.map((item) => item.FinalPrice);
@@ -102,7 +103,7 @@ export default class CheckoutProcess {
       const res = await services.checkout(json);
       console.log(res);
       setLocalStorage("so-cart", []);
-      location.assign("/checkout/success.html");
+      window.location.assign("/checkout/success.html");
     } catch (err) {
       removeAllAlerts();
       for (let message in err.message) {
