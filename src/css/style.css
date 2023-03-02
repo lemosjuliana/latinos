@@ -229,6 +229,21 @@ button {
 .product-detail img {
   width: 100%;
 }
+
+.product-detail__add button{
+  background: #525b0f;
+  
+}
+.product-detail__add button:hover{
+  background-color:#303030 ;
+}
+.product-detail__add button:active{
+  background-color:#303030 ;
+  box-shadow: 0 5px #303030;
+  transform: translateY(4px);
+
+}
+
 /* product grid styles */
 .product-grid {
   list-style-type: none;
@@ -309,7 +324,10 @@ button {
 .comment-box button:hover{
   background-color: #303030;
 }
+
+
 /* Start cart list card styles */
+
 .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
