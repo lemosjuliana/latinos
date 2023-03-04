@@ -218,6 +218,10 @@ button {
 .card__name {
   font-size: 1em;
 }
+
+.product-card_discount_list{
+  color: rgb(126, 5, 5);
+}
 /* End product list card */
 
 .product-detail {
@@ -243,7 +247,13 @@ button {
   transform: translateY(4px);
 
 }
+.product-card_discount_detail{
+  color: rgb(126, 5, 5);
+}
 
+.product-card__price{
+  color:#376e13;
+}
 /* product grid styles */
 .product-grid {
   list-style-type: none;
