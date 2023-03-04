@@ -2,6 +2,9 @@ import { getLocalStorage, setLocalStorage, alertMessage } from "./utils.mjs";
 
 //renderProductDetails() 
 function renderProductDetailsOutside(product){
+  let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) 
+  let discountRounded = Math.round(discount)
+
 return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
   <h2 class="divider">${product.NameWithoutBrand}</h2>
   <img
@@ -9,6 +12,7 @@ return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
     src="${product.Images.PrimaryLarge}"
     alt="${product.NameWithoutBrand}"
   />
+  <p class="product-card_discount_details">-${discountRounded}% OFF</p></a>
   <p class="product-card__price">$${product.FinalPrice}</p>
   <p class="product__color">${product.Colors[0].ColorName}</p>
   <p class="product__description">${product.DescriptionHtmlSimple}</p>

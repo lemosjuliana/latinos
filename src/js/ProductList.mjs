@@ -2,6 +2,9 @@ import { renderListWithTemplate } from "./utils.mjs";
 
 // ProductList.mjs
 function productCardTemplate(product) {
+  let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) 
+  let discountRounded = Math.round(discount)
+
   return `<li class="product-card">
   <a href="/product_pages/index.html?product=${product.Id}">
   <img
@@ -10,6 +13,7 @@ function productCardTemplate(product) {
   />
   <h3 class="card__brand">${product.Brand.Name}</h3>
   <h2 class="card__name">${product.Name}</h2>
+  <p class="product-card_discount_list">-${discountRounded}% OFF</p></a>
   <p class="product-card__price">$${product.FinalPrice}</p></a>
 </li>`
 } 
